@@ -1,0 +1,1122 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Dark Mode Init -->
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+    <title>CURATOR.IO | Creative Technologist Portfolio</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              outline: "#747688",
+              "primary-container": "#2e5bff",
+              "surface-container": "#efeeea",
+              "primary-fixed": "#dde1ff",
+              "on-tertiary-container": "#c4faff",
+              "surface-tint": "#124af0",
+              "on-primary-fixed-variant": "#0035be",
+              "secondary-fixed": "#f6d9ff",
+              "secondary-container": "#cb66fe",
+              "inverse-primary": "#b8c3ff",
+              background: "#faf9f5",
+              "tertiary-fixed": "#7df4ff",
+              tertiary: "#005e65",
+              "tertiary-container": "#007981",
+              "primary-fixed-dim": "#b8c3ff",
+              "outline-variant": "#c4c5d9",
+              "on-primary-container": "#efefff",
+              "on-secondary": "#ffffff",
+              secondary: "#9026c3",
+              "on-secondary-fixed": "#310048",
+              "surface-dim": "#dbdad6",
+              "surface-container-highest": "#e3e2df",
+              "surface-container-high": "#e9e8e4",
+              "secondary-fixed-dim": "#e9b3ff",
+              "on-tertiary-fixed-variant": "#004f54",
+              "on-primary-fixed": "#001356",
+              surface: "#faf9f5",
+              "on-surface": "#1b1c1a",
+              primary: "#0040e0",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#002022",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#434656",
+              "on-secondary-fixed-variant": "#7200a3",
+              "surface-variant": "#e3e2df",
+              "on-background": "#1b1c1a",
+              "inverse-surface": "#2f312e",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f2f1ed",
+              "tertiary-fixed-dim": "#00dbe9",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#4a006b",
+              "surface-container-low": "#f4f4f0",
+              "surface-bright": "#faf9f5",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Manrope"],
+              label: ["Manrope"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Three.js for WebGL Orb -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body overflow-x-hidden selection:bg-primary/20"
+    style="overflow: hidden;"
+  >
+    <!-- ========================================================================= -->
+    <!--                          0. CINEMATIC PRELOADER                           -->
+    <!-- ========================================================================= -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-counter" id="preloader-counter">000</div>
+      <div class="preloader-label">CURATOR.IO</div>
+      <div class="preloader-bar-track">
+        <div class="preloader-bar-fill" id="preloader-bar"></div>
+      </div>
+    </div>
+    <!-- ========================================================================= -->
+    <!--                          1. NAVIGATION BAR                                -->
+    <!-- ========================================================================= -->
+    <nav
+      id="main-nav"
+      class="fixed top-6 left-1/2 -translate-x-1/2 w-[calc(100%-4rem)] max-w-6xl z-50 bg-[#faf9f5]/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_32px_rgba(255,255,255,0.04)] rounded-full border border-white/40 dark:border-white/10 transition-all duration-500 ease-in-out"
+    >
+      <div class="flex justify-between items-center w-full mx-auto px-6 py-4">
+        <div
+          class="text-xl font-black tracking-tighter text-[#1b1c1a] dark:text-white font-headline transition-colors"
+        >
+          CURATOR.IO
+        </div>
+        <div class="hidden md:flex items-center space-x-12">
+          <a
+            class="text-[#0040e0] dark:text-[#6b95ff] border-b-2 border-[#0040e0] dark:border-[#6b95ff] pb-1 font-headline font-bold tracking-tight transition-colors"
+            href="#"
+            >Work</a
+          >
+          <a
+            class="text-[#1b1c1a]/60 dark:text-white/60 hover:text-[#0040e0] dark:hover:text-[#6b95ff] transition-colors font-headline font-bold tracking-tight"
+            href="#"
+            >Tech</a
+          >
+          <a
+            class="text-[#1b1c1a]/60 dark:text-white/60 hover:text-[#0040e0] dark:hover:text-[#6b95ff] transition-colors font-headline font-bold tracking-tight"
+            href="#"
+            >About</a
+          >
+          <a
+            class="text-[#1b1c1a]/60 dark:text-white/60 hover:text-[#0040e0] dark:hover:text-[#6b95ff] transition-colors font-headline font-bold tracking-tight"
+            href="#"
+            >Process</a
+          >
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            id="theme-toggle"
+            class="p-2 rounded-full bg-black/5 dark:bg-white/10 text-on-surface dark:text-white hover:opacity-80 transition-all focus:outline-none flex items-center justify-center scale-95 hover:scale-100"
+            aria-label="Toggle Dark Mode"
+          >
+            <span class="material-symbols-outlined dark:hidden text-[20px]">dark_mode</span>
+            <span class="material-symbols-outlined hidden dark:block text-[20px]">light_mode</span>
+          </button>
+          <button
+            class="nav-hire-btn bg-primary text-on-primary px-8 py-2.5 rounded-full font-headline font-bold tracking-tight scale-95 active:scale-90 transition-transform hover:opacity-80"
+          >
+            Hire Me
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="min-h-screen">
+      <div class="relative z-10">
+        <!-- ========================================================================= -->
+        <!--                          2. HERO SECTION                                  -->
+        <!-- ========================================================================= -->
+        <section
+          class="sticky top-0 h-[100svh] w-full flex flex-col overflow-hidden mesh-gradient pt-[140px] pb-8"
+          style="z-index: 1; justify-content: safe center;"
+        >
+          <!-- Smooth background depth (Full width now) -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none"
+          ></div>
+          <div class="max-w-7xl mx-auto px-8 relative w-full">
+            <div class="asymmetric-grid items-center w-full relative z-10">
+              <!-- Left Side: Identity & Copy -->
+              <div
+                class="col-span-12 lg:col-span-7 z-10 flex flex-col justify-center"
+              >
+                <!-- Top Micro Bar -->
+                <div
+                  class="hero-stagger opacity-0 flex items-center gap-3 mb-10 mix-blend-multiply"
+                >
+                  <span
+                    class="text-on-surface-variant font-bold text-[11px] uppercase tracking-[0.2em]"
+                    >Creative Technologist</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                  <span
+                    class="text-on-surface-variant font-bold text-[11px] uppercase tracking-[0.2em]"
+                    >Frontend Developer</span
+                  >
+                </div>
+
+                <!-- Identity Chips -->
+                <div class="hero-stagger opacity-0 flex flex-wrap gap-4 mb-8">
+                  <!-- Glowing Impact Location Badge -->
+                  <div
+                    class="glass-card px-5 py-2 rounded-full border border-primary/20 bg-primary/5 flex items-center gap-3 backdrop-blur-lg shadow-[0_4px_20px_-5px_rgba(0,64,224,0.15)] group hover:bg-primary/10 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_-5px_rgba(0,64,224,0.25)] transition-all cursor-default duration-300"
+                  >
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                      ></span>
+                      <span
+                        class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary shadow-[0_0_8px_rgba(0,64,224,0.8)]"
+                      ></span>
+                    </span>
+                    <span
+                      class="font-extrabold text-[12px] tracking-[0.2em] text-primary uppercase"
+                      >Navi Mumbai, IN</span
+                    >
+                  </div>
+
+                  <!-- Availability Status -->
+                  <div
+                    class="glass-card px-5 py-2 rounded-full border border-secondary/20 bg-secondary/5 flex items-center gap-2 backdrop-blur-lg hover:bg-secondary/10 transition-colors cursor-default duration-300"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[16px] text-secondary"
+                      >work</span
+                    >
+                    <span class="font-bold text-[13px] text-secondary"
+                      >Available for Projects</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Main Headline -->
+                <h1
+                  class="font-headline text-6xl md:text-8xl lg:text-[7.5rem] font-extrabold tracking-tighter text-on-surface leading-[1.05] mb-8 py-2"
+                >
+                  <span
+                    class="hero-stagger-line block opacity-0 text-3xl md:text-5xl text-on-surface-variant/80 font-bold mb-4 tracking-tight"
+                    >Hola,</span
+                  >
+                  <span
+                    class="hero-stagger-line block opacity-0 text-on-surface"
+                    >I'm Shubh</span
+                  >
+                  <span
+                    class="hero-stagger-line hero-stagger-line--gradient opacity-0 flex items-center pr-4"
+                  >
+                    <span
+                      class="hero-name-gradient"
+                      >Saraswat</span
+                    >
+                  </span>
+                </h1>
+
+                <!-- Subtext -->
+                <p
+                  class="hero-stagger opacity-0 text-xl md:text-2xl text-on-surface-variant max-w-xl font-medium leading-relaxed mb-12 mt-2"
+                >
+                  Frontend developer crafting
+                  <span
+                    class="text-on-surface font-bold border-b border-primary/30"
+                    >smooth, interactive experiences.</span
+                  >
+                </p>
+
+                <!-- Aggressive CTA -->
+                <div
+                  class="hero-stagger opacity-0 flex flex-wrap gap-6 items-center"
+                >
+                  <button
+                    class="hero-cta-primary relative overflow-hidden group px-8 py-4 bg-on-surface text-surface rounded-full font-bold text-lg shadow-[0_15px_40px_-5px_rgba(0,0,0,0.3)] hover:-translate-y-1 hover:shadow-[0_20px_50px_-5px_rgba(0,64,224,0.4)] transition-all duration-300"
+                  >
+                    <span class="relative z-10 flex items-center gap-2">
+                      Let's Build Something
+                      <span
+                        class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform"
+                        >arrow_forward</span
+                      >
+                    </span>
+                    <div
+                      class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    ></div>
+                  </button>
+                  <a
+                    href="#personal-intro"
+                    class="hero-cta-secondary font-bold text-on-surface hover:text-primary transition-colors hover:translate-x-1 duration-300 flex items-center gap-2 group"
+                  >
+                    View My Work
+                    <span
+                      class="material-symbols-outlined text-[18px] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                      >south</span
+                    >
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Side: Dynamic Skill Panel -->
+              <div
+                class="col-span-12 lg:col-span-5 relative h-[500px] hidden lg:flex items-center justify-center"
+              >
+                <!-- WebGL Morphing Orb -->
+                <canvas id="orb-canvas"></canvas>
+
+                <!-- Floating Skill Cards Container -->
+                <div class="relative w-full h-full hero-skills opacity-0 z-10">
+                  <!-- Skill 1 -->
+                  <div
+                    class="absolute top-[15%] right-[5%] w-[240px] glass-card p-5 rounded-3xl border border-white/60 shadow-xl hero-skill-card hover:scale-[1.03] hover:border-primary/50 hover:shadow-[0_20px_40px_rgba(0,64,224,0.15)] transition-all cursor-default group backdrop-blur-xl"
+                  >
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-inner"
+                      >
+                        <span
+                          class="material-symbols-outlined text-2xl"
+                          style="font-variation-settings: &quot;FILL&quot; 1"
+                          >auto_awesome</span
+                        >
+                      </div>
+                      <div>
+                        <span
+                          class="block font-bold font-headline text-on-surface text-base"
+                          >GSAP</span
+                        >
+                        <span
+                          class="block font-bold text-[11px] text-primary uppercase tracking-widest mt-0.5"
+                          >Motion</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Skill 2 -->
+                  <div
+                    class="absolute top-[45%] left-[5%] w-[260px] glass-card p-5 rounded-3xl border border-white/60 shadow-xl hero-skill-card hover:scale-[1.03] hover:border-secondary/50 hover:shadow-[0_20px_40px_rgba(144,38,195,0.15)] transition-all cursor-default group backdrop-blur-xl z-20"
+                  >
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors duration-300 shadow-inner"
+                      >
+                        <span class="material-symbols-outlined text-2xl"
+                          >data_object</span
+                        >
+                      </div>
+                      <div>
+                        <span
+                          class="block font-bold font-headline text-on-surface text-base"
+                          >React</span
+                        >
+                        <span
+                          class="block font-bold text-[11px] text-secondary uppercase tracking-widest mt-0.5"
+                          >UI Systems</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Skill 3 -->
+                  <div
+                    class="absolute bottom-[10%] right-[10%] w-[250px] glass-card p-5 rounded-3xl border border-white/60 shadow-xl hero-skill-card hover:scale-[1.03] hover:border-tertiary/50 hover:shadow-[0_20px_40px_rgba(0,121,129,0.15)] transition-all cursor-default group backdrop-blur-xl z-10"
+                  >
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-white transition-colors duration-300 shadow-inner"
+                      >
+                        <span class="material-symbols-outlined text-2xl"
+                          >brush</span
+                        >
+                      </div>
+                      <div>
+                        <span
+                          class="block font-bold font-headline text-on-surface text-base"
+                          >Tailwind</span
+                        >
+                        <span
+                          class="block font-bold text-[11px] text-tertiary uppercase tracking-widest mt-0.5"
+                          >Styling Engine</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ========================================================================= -->
+        <!--                     2.5 BRUTALIST KINETIC MARQUEE                         -->
+        <!-- ========================================================================= -->
+        <div class="marquee-section">
+          <!-- Row 1: Scrolls Left -->
+          <div class="marquee-track" id="marquee-row-1">
+            <span class="marquee-text">Creative Engineer</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text marquee-text--outline">Frontend Artist</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text">Creative Engineer</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text marquee-text--outline">Frontend Artist</span>
+            <span class="marquee-separator">—</span>
+          </div>
+
+          <!-- Row 2: Scrolls Right (Reversed) -->
+          <div class="marquee-track" id="marquee-row-2">
+            <span class="marquee-text marquee-text--outline">Design</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text">Develop</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text marquee-text--outline">Deploy</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text">Design</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text marquee-text--outline">Develop</span>
+            <span class="marquee-separator">—</span>
+            <span class="marquee-text">Deploy</span>
+            <span class="marquee-separator">—</span>
+          </div>
+        </div>
+        <!-- ========================================================================= -->
+        <!--                          3. PERSONAL INTRO SECTION                        -->
+        <!-- =========================================================================  -->
+        <section
+          class="sticky top-0 h-screen w-full flex items-center justify-center bg-surface-container-low pt-32 pb-12 overflow-hidden rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.15)]"
+          id="personal-intro"
+          style="z-index: 2"
+        >
+          <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLDRwaDRSNCw0LDQsMHYzMmgzMnY0SDBWMHoiIGZpbGw9IiM4MDgwODAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] bg-[length:40px_40px] opacity-50 z-0"
+          ></div>
+          <div class="max-w-7xl mx-auto px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+              <!-- Left Side: Bold Text -->
+              <div class="intro-text-col">
+                <div class="flex flex-wrap items-center gap-4 mb-10 intro-fade">
+                  <div
+                    class="px-5 py-2.5 rounded-full border border-primary/20 bg-primary/5 flex items-center gap-3 backdrop-blur-lg shadow-[0_4px_20px_-5px_rgba(0,64,224,0.15)] hover:bg-primary/10 transition-all cursor-default duration-300"
+                  >
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                      ></span>
+                      <span
+                        class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary shadow-[0_0_8px_rgba(0,64,224,0.8)]"
+                      ></span>
+                    </span>
+                    <span
+                      class="font-extrabold text-[13px] tracking-[0.2em] text-primary uppercase"
+                      >Navi Mumbai, IN</span
+                    >
+                  </div>
+                </div>
+
+                <h2
+                  class="font-headline text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-tight mb-8 intro-fade py-2"
+                >
+                  Building things that
+                  <span
+                    class="italic text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary to-primary-container py-2 px-4 -my-2 -mx-4"
+                    >shouldn't feel</span
+                  >
+                  this smooth.
+                </h2>
+
+                <p
+                  class="text-xl md:text-2xl text-on-surface-variant font-medium leading-relaxed intro-fade max-w-lg"
+                >
+                  BTech Computer Science student specializing in
+                  <span class="text-primary border-b border-primary/30 pb-0.5">
+                    AI</span
+                  >. I don’t just build templates — I craft interactive
+                  realities.
+                </p>
+              </div>
+
+              <!-- Right Side: Interactive Abstract / Tech Skills -->
+              <div
+                class="relative h-[450px] lg:h-[550px] w-full flex items-center justify-center"
+              >
+                <!-- Glowing Organic Geometry (Optimized out backdrop-blur for performance) -->
+                <div
+                  class="absolute w-[80%] aspect-square rounded-[4rem] rotate-12 bg-gradient-to-tr from-primary/10 via-secondary/15 to-black/5 border border-white/60 shadow-[0_20px_50px_rgba(0,64,224,0.1)] intro-floating-bg ml-10 transform-gpu"
+                ></div>
+
+                <!-- Floating Tech Pills (Optimized glass effect) -->
+                <div
+                  class="relative z-10 w-full h-full flex items-center justify-center p-8"
+                >
+                  <div class="grid grid-cols-2 gap-5 w-full max-w-sm">
+                    <!-- GSAP -->
+                    <div
+                      class="tech-pill bg-white/70 p-5 rounded-3xl flex items-center gap-4 cursor-pointer shadow-xl border border-white/80 hover:border-primary/50 transition-colors transform-gpu"
+                      data-speed="1.4"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary"
+                      >
+                        <span
+                          class="material-symbols-outlined text-2xl"
+                          style="font-variation-settings: &quot;FILL&quot; 1"
+                          >auto_awesome</span
+                        >
+                      </div>
+                      <span
+                        class="font-bold font-headline text-lg select-none text-on-surface"
+                        >GSAP</span
+                      >
+                    </div>
+
+                    <!-- React -->
+                    <div
+                      class="tech-pill bg-white/70 p-5 rounded-3xl flex items-center gap-4 cursor-pointer shadow-xl border border-white/80 hover:border-secondary/50 transition-colors translate-y-8 transform-gpu"
+                      data-speed="-0.8"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary"
+                      >
+                        <span class="material-symbols-outlined text-2xl"
+                          >data_object</span
+                        >
+                      </div>
+                      <span
+                        class="font-bold font-headline text-lg select-none text-on-surface"
+                        >React</span
+                      >
+                    </div>
+
+                    <!-- Tailwind -->
+                    <div
+                      class="tech-pill bg-white/70 p-5 rounded-3xl flex items-center gap-4 cursor-pointer shadow-xl border border-white/80 hover:border-tertiary/50 transition-colors transform-gpu"
+                      data-speed="0.9"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary"
+                      >
+                        <span class="material-symbols-outlined text-2xl"
+                          >brush</span
+                        >
+                      </div>
+                      <span
+                        class="font-bold font-headline text-lg select-none text-on-surface"
+                        >Tailwind</span
+                      >
+                    </div>
+
+                    <!-- JavaScript Node -->
+                    <div
+                      class="tech-pill bg-white/70 p-5 rounded-3xl flex items-center gap-4 cursor-pointer shadow-xl border border-white/80 hover:border-primary/50 transition-colors translate-y-8 transform-gpu"
+                      data-speed="-1.2"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-2xl bg-[#F7DF1E]/20 flex items-center justify-center text-[#F7DF1E]"
+                      >
+                        <span
+                          class="material-symbols-outlined text-2xl font-bold"
+                          >code</span
+                        >
+                      </div>
+                      <span
+                        class="font-bold font-headline text-lg select-none text-on-surface"
+                        >Node</span
+                      >
+                    </div>
+
+                    <!-- HTML/CSS Full Width Block -->
+                    <div
+                      class="tech-pill bg-white/70 p-6 rounded-3xl flex items-center justify-between cursor-pointer shadow-xl border border-white/80 hover:border-secondary/50 transition-colors col-span-2 mt-4 transform-gpu"
+                      data-speed="1.1"
+                    >
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 rounded-2xl bg-on-surface flex items-center justify-center text-surface"
+                        >
+                          <span class="material-symbols-outlined text-2xl"
+                            >web</span
+                          >
+                        </div>
+                        <div>
+                          <span
+                            class="font-bold font-headline text-lg block select-none text-on-surface"
+                            >Web Native</span
+                          >
+                          <span
+                            class="text-xs text-on-surface-variant font-bold uppercase tracking-widest select-none"
+                            >HTML5 / CSS3</span
+                          >
+                        </div>
+                      </div>
+                      <span
+                        class="material-symbols-outlined text-on-surface-variant/50"
+                        >arrow_forward</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!--                          4. SCROLL MANIFESTO SECTION                      -->
+      <!-- ========================================================================= -->
+
+      <div class="hype-section font-headline bg-surface-container-low">
+        <div class="hype-header hype-fluid" style="--count: 7">
+          <section>
+            <h1>
+              <span aria-hidden="true">i can&nbsp;</span>
+              <span class="sr-only">i can ship things.</span>
+            </h1>
+            <ul class="hype-ul" aria-hidden="true">
+              <li class="hype-li" style="--i: 0">design.</li>
+              <li class="hype-li" style="--i: 1">prototype.</li>
+              <li class="hype-li" style="--i: 2">solve.</li>
+              <li class="hype-li" style="--i: 3">build.</li>
+              <li class="hype-li" style="--i: 4">develop.</li>
+              <li class="hype-li" style="--i: 5">cook.</li>
+              <li class="hype-li" style="--i: 6">ship.</li>
+            </ul>
+          </section>
+        </div>
+        <div class="hype-main">
+          <section
+            class="hype-main-section flex-col hype-reveal-group justify-center items-center h-full"
+          >
+            <p class="hype-fluid text-center mt-[-10vh] text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary font-extrabold">
+              and I'll show you how.
+            </p>
+            <div
+              class="mt-8 text-primary font-bold tracking-widest uppercase text-sm animate-pulse"
+            >
+              Scroll to discover
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!--                    5. CINEMATIC CASE STUDY SHOWCASE                      -->
+      <!-- ========================================================================= -->
+      <section id="featured-works" class="case-studies-section relative">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-8 pt-40 pb-20">
+          <div class="case-header flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <div>
+              <span class="case-eyebrow font-headline font-extrabold text-[11px] uppercase tracking-[0.3em] text-primary mb-6 block">Selected Work</span>
+              <h2 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface leading-[0.95]">
+                Featured<br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#001a6e] via-[#0040e0] to-[#3b82f6]">Projects</span>
+              </h2>
+            </div>
+            <p class="text-on-surface-variant font-body text-lg max-w-sm leading-relaxed md:text-right">
+              A curated selection of interactive experiences, interfaces, and digital products I've crafted.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 01: Word Scramble Game -->
+        <article class="case-card" data-case="01">
+          <div class="max-w-[90rem] mx-auto px-8">
+            <div class="case-card-inner grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <!-- Image Side -->
+              <div class="lg:col-span-7 case-image-wrapper">
+                <a href="https://word-scramble-game-gbwn-pcwqyrbu5.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  <div class="case-image-container">
+                    <div class="case-image-grain"></div>
+                    <img
+                      src="word-scramble-game.png"
+                      alt="Word Scramble Game — Interactive Word Puzzle"
+                      class="case-image"
+                      loading="lazy"
+                    />
+                    <div class="case-image-overlay">
+                      <span class="case-view-label font-headline">
+                        <span class="material-symbols-outlined text-[18px]">sports_esports</span>
+                        Play Now
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Info Side -->
+              <div class="lg:col-span-5 case-info">
+                <span class="case-number font-headline">01</span>
+                <h3 class="case-title font-headline">Word Scramble Game</h3>
+                <p class="case-description font-body">
+                  A fully interactive word puzzle game with a stunning gamified UI. Features multiple difficulty levels (Easy to Champion), real-time scoring with streak tracking, timed challenges, and a richly textured wooden board aesthetic. Designed to feel like a premium mobile game — right in the browser.
+                </p>
+                <div class="case-tags">
+                  <span class="case-tag">HTML5</span>
+                  <span class="case-tag">CSS3</span>
+                  <span class="case-tag">JavaScript</span>
+                  <span class="case-tag">Game Design</span>
+                  <span class="case-tag">UI/UX</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="https://word-scramble-game-gbwn-pcwqyrbu5.vercel.app/" target="_blank" rel="noopener noreferrer" class="case-play-btn">
+                    <span class="material-symbols-outlined text-[18px]">sports_esports</span>
+                    <span>Play the Game</span>
+                  </a>
+                  <a href="https://word-scramble-game-gbwn-pcwqyrbu5.vercel.app/" target="_blank" rel="noopener noreferrer" class="case-cta group">
+                    <span>View Live Site</span>
+                    <span class="material-symbols-outlined text-[18px] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!--                    6. PREMIUM TECH ARSENAL + PHILOSOPHY                  -->
+      <!-- ========================================================================= -->
+      <section id="tech-arsenal" class="tech-arsenal-section overflow-hidden">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-8 pt-40 pb-16">
+          <div class="tech-header text-center">
+            <span class="font-headline font-extrabold text-[11px] uppercase tracking-[0.3em] text-primary mb-6 block">Tools & Technologies</span>
+            <h2 class="font-headline text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-on-surface leading-[0.95] mb-8">
+              My Tech<br/>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#001a6e] via-[#0040e0] to-[#3b82f6]">Arsenal</span>
+            </h2>
+            <p class="text-on-surface-variant font-body text-lg max-w-lg mx-auto leading-relaxed">
+              The tools I wield to turn ideas into interactive realities.
+            </p>
+          </div>
+        </div>
+
+        <!-- Infinite Scroll Skill Ribbons -->
+        <div class="skill-ribbon-wrapper py-12">
+          <!-- Row 1: Scrolls Left -->
+          <div class="skill-ribbon" id="skill-ribbon-1">
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">code</span>
+              <span class="skill-name">React</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 92%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">rocket_launch</span>
+              <span class="skill-name">Next.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 88%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">javascript</span>
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 95%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">palette</span>
+              <span class="skill-name">Tailwind CSS</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 94%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+              <span class="skill-name">GSAP</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 90%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">view_in_ar</span>
+              <span class="skill-name">Three.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 78%"></span></span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">code</span>
+              <span class="skill-name">React</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 92%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">rocket_launch</span>
+              <span class="skill-name">Next.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 88%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">javascript</span>
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 95%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">palette</span>
+              <span class="skill-name">Tailwind CSS</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 94%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+              <span class="skill-name">GSAP</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 90%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">view_in_ar</span>
+              <span class="skill-name">Three.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 78%"></span></span>
+            </div>
+          </div>
+
+          <!-- Row 2: Scrolls Right -->
+          <div class="skill-ribbon skill-ribbon--reverse" id="skill-ribbon-2">
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">psychology</span>
+              <span class="skill-name">AI/ML APIs</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 82%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">database</span>
+              <span class="skill-name">Supabase</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 85%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">animation</span>
+              <span class="skill-name">Framer Motion</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 87%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">terminal</span>
+              <span class="skill-name">Node.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 83%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">deployed_code</span>
+              <span class="skill-name">TypeScript</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 86%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">design_services</span>
+              <span class="skill-name">Figma</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 91%"></span></span>
+            </div>
+            <!-- Duplicates -->
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">psychology</span>
+              <span class="skill-name">AI/ML APIs</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 82%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">database</span>
+              <span class="skill-name">Supabase</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 85%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">animation</span>
+              <span class="skill-name">Framer Motion</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 87%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="primary">
+              <span class="material-symbols-outlined text-xl">terminal</span>
+              <span class="skill-name">Node.js</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 83%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="tertiary">
+              <span class="material-symbols-outlined text-xl">deployed_code</span>
+              <span class="skill-name">TypeScript</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 86%"></span></span>
+            </div>
+            <div class="skill-capsule" data-color="secondary">
+              <span class="material-symbols-outlined text-xl">design_services</span>
+              <span class="skill-name">Figma</span>
+              <span class="skill-level"><span class="skill-level-fill" style="--fill: 91%"></span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Philosophy Cards -->
+        <div class="max-w-7xl mx-auto px-8 py-32">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <!-- Left: Big Statement -->
+            <div class="philosophy-statement">
+              <h3 class="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-on-surface leading-[1.05]">
+                I don't just write code.
+                <span class="text-on-surface-variant/60 block mt-2">I engineer experiences.</span>
+              </h3>
+            </div>
+            <!-- Right: Numbered Cards -->
+            <div class="philosophy-cards flex flex-col gap-6">
+              <div class="philosophy-card group">
+                <div class="philosophy-card-number font-headline">01</div>
+                <div class="philosophy-card-content">
+                  <h4 class="font-headline font-extrabold text-lg text-on-surface mb-2 group-hover:text-primary transition-colors">Motion-First Design</h4>
+                  <p class="text-on-surface-variant font-body text-[15px] leading-relaxed">Every interface I build tells a story through motion. Scroll-driven narratives, character-level animations, and physics-based interactions that feel alive.</p>
+                </div>
+              </div>
+              <div class="philosophy-card group">
+                <div class="philosophy-card-number font-headline">02</div>
+                <div class="philosophy-card-content">
+                  <h4 class="font-headline font-extrabold text-lg text-on-surface mb-2 group-hover:text-primary transition-colors">Pixel-Perfect Obsession</h4>
+                  <p class="text-on-surface-variant font-body text-[15px] leading-relaxed">I sweat the details most people never notice — kerning, easing curves, interaction micro-timing. The difference between good and extraordinary lives in the pixels.</p>
+                </div>
+              </div>
+              <div class="philosophy-card group">
+                <div class="philosophy-card-number font-headline">03</div>
+                <div class="philosophy-card-content">
+                  <h4 class="font-headline font-extrabold text-lg text-on-surface mb-2 group-hover:text-primary transition-colors">Performance as a Feature</h4>
+                  <p class="text-on-surface-variant font-body text-[15px] leading-relaxed">Beautiful means nothing if it's slow. GPU-accelerated transforms, lazy loading, will-change optimizations — buttery 60fps or it doesn't ship.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ========================================================================= -->
+      <!--                          7. CALL TO ACTION AREA                           -->
+      <!-- ========================================================================= -->
+      <section
+        class="py-40 relative overflow-hidden cta-section-wrapper transition-colors duration-500"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-tertiary/5 opacity-50"
+        ></div>
+        <div class="max-w-7xl mx-auto px-8 relative z-10 text-center">
+          <h2
+            class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 max-w-4xl mx-auto"
+          >
+            Let's build something that
+            <span class="italic text-primary">moves people</span>.
+          </h2>
+          <div class="galaxy-button inline-block mx-auto mt-8">
+            <button id="galaxy-btn">
+              <span class="spark"></span>
+              <span class="backdrop"></span>
+              <span class="galaxy__container">
+                <span class="galaxy-star galaxy-star--static"></span>
+                <span class="galaxy-star galaxy-star--static"></span>
+                <span class="galaxy-star galaxy-star--static"></span>
+                <span class="galaxy-star galaxy-star--static"></span>
+              </span>
+              <span class="galaxy">
+                <span class="galaxy__ring">
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                  <span class="galaxy-star"></span>
+                </span>
+              </span>
+              <span class="text">Contact Me</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ========================================================================= -->
+    <!--                          8. FOOTER                                        -->
+    <!-- ========================================================================= -->
+    <footer class="w-full py-12 px-8 mt-20 tonal-shift bg-[#e9e8e4]">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto"
+      >
+        <div
+          class="font-bold text-[#1b1c1a] font-headline uppercase tracking-widest text-sm"
+        >
+          © 2025 Digital Curator. Built with Intentional Asymmetry.
+        </div>
+        <div
+          class="flex gap-12 font-['Manrope'] text-sm uppercase tracking-widest"
+        >
+          <a
+            class="footer-link text-[#1b1c1a]/40 hover:text-[#9026c3] transition-colors duration-300"
+            href="#"
+            >Twitter</a
+          >
+          <a
+            class="footer-link text-[#1b1c1a]/40 hover:text-[#9026c3] transition-colors duration-300"
+            href="#"
+            >GitHub</a
+          >
+          <a
+            class="footer-link text-[#1b1c1a]/40 hover:text-[#9026c3] transition-colors duration-300"
+            href="#"
+            >LinkedIn</a
+          >
+          <a
+            class="footer-link text-[#1b1c1a]/40 hover:text-[#9026c3] transition-colors duration-300"
+            href="#"
+            >Read.cv</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!--                          9. PROJECT MODAL OVERLAYS                        -->
+    <!-- ========================================================================= -->
+    <div class="modal">
+      <div class="close-modal">&times;</div>
+      <div class="arrow arrow--next">NXT</div>
+      <div class="arrow arrow--prev">PRV</div>
+      <div class="card-wrapper">
+        <!-- Card 1 -->
+        <div class="card front active-card pt-0">
+          <div class="card-core">
+            <div class="riser riser--1"></div>
+            <div class="riser riser--2"></div>
+            <div class="riser riser--3"></div>
+            <div class="riser riser--4"></div>
+            <div class="shadow"></div>
+
+            <div class="card-visual">
+              <img
+                src=""
+                alt="Project Visual"
+                class="card-image w-full h-full object-cover"
+              />
+            </div>
+            <div class="card-details">
+              <div class="card-number">NO.</div>
+              <div class="card-title">TITLE</div>
+              <div class="card-desc">DESCRIPTION</div>
+              <div class="card-action">
+                View Live Site
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="back"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card front pt-0">
+          <div class="card-core">
+            <div class="riser riser--1"></div>
+            <div class="riser riser--2"></div>
+            <div class="riser riser--3"></div>
+            <div class="riser riser--4"></div>
+            <div class="shadow"></div>
+
+            <div class="card-visual">
+              <img
+                src=""
+                alt="Project Visual"
+                class="card-image w-full h-full object-cover"
+              />
+            </div>
+            <div class="card-details">
+              <div class="card-number">NO.</div>
+              <div class="card-title">TITLE</div>
+              <div class="card-desc">DESCRIPTION</div>
+              <div class="card-action">
+                View Live Site
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="back"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+
+    
+
+    
+
+    <!-- ================================================================ -->
+    <!-- FEATURE 2: WEBGL MORPHING ORB                                    -->
+    <!-- ================================================================ -->
+    
+
+    <!-- Smooth Scrolling (Lenis) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+
+    <!-- Theme Toggle Logic -->
+    <script>
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+          if (document.documentElement.classList.contains('dark')) {
+            localStorage.theme = 'dark';
+          } else {
+            localStorage.theme = 'light';
+          }
+        });
+      }
+    </script>
+      <script src="main.js"></script>
+  </body>
+</html>
